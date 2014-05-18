@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -14,8 +15,8 @@ public class Requisicao {
 		try {
 			data = URLEncoder.encode("nome", "UTF-8") + "=" + URLEncoder.encode("Fernando", "UTF-8");
 
-			// URL url = new URL("http://www.google.com");
-			URL url = new URL("https://www.googleapis.com/upload/storage/v1/b/myBucket/o?uploadType=media&name=myObject");
+			URL url = new URL("http://www.google.com");
+			//URL url = new URL("https://www.googleapis.com/upload/storage/v1/b/myBucket/o?uploadType=media&name=myObject");
 			HttpURLConnection httpUrlConnection = (HttpURLConnection) url.openConnection();
 
 			// envia dados
@@ -37,16 +38,21 @@ public class Requisicao {
 			InputStreamReader inputReader = new InputStreamReader(httpUrlConnection.getInputStream());
 			BufferedReader bufferedReader = new BufferedReader(inputReader);
 
-			System.out.println("\n** retorno da página web **");
-			String linha = "";
-			while ((linha = bufferedReader.readLine()) != null) {
-				System.out.println(linha);
-			}
+			imprimeRetornoPagina(bufferedReader);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+	}
+
+	private static void imprimeRetornoPagina(BufferedReader bufferedReader)
+			throws IOException {
+		System.out.println("\n** retorno da página web **");
+		String linha = "";
+		while ((linha = bufferedReader.readLine()) != null) {
+			System.out.println(linha);
+		}
 	}
 
 }
