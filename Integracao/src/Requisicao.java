@@ -1,13 +1,16 @@
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import org.json.simpleForBukkit.JSONArray;
 import org.json.simpleForBukkit.JSONObject;
 import org.json.simpleForBukkit.parser.JSONParser;
 import org.json.simpleForBukkit.parser.ParseException;
@@ -26,7 +29,7 @@ public class Requisicao {
 
 			// envia dados
 			httpUrlConnection.setRequestMethod("GET");
-			//httpUrlConnection.setRequestProperty("Authorization", "Bearer ya29.KgB7IjGEXcfAeyIAAACLJHY1Kux8WVgsQ1oUhzTh8POAPnAvhIbXiigmtlUPgHyj_4i-iUjKV5eZi405blo");
+			httpUrlConnection.setRequestProperty("Authorization", "Bearer ya29.KgCzGk6Ohv7IlSIAAAAFM3kz6LUF4YMWMkRrmEns3R_YIi64Ko0RiaXYy1DGz_2xmNRCuGlBUj2iAnmwPXs");
 			//httpUrlConnection.setRequestProperty("Content-Type", "image/jpeg");
 			// httpUrlConnection.setRequestProperty("Host",
 			// "www.googleapis.com");
@@ -51,6 +54,27 @@ public class Requisicao {
 		}
 
 	}
+	
+	private static void salvarImagemPorURL(String urlDaImagem){
+		try {
+			URL url = new URL(urlDaImagem);
+			InputStream in;
+		
+			in = new BufferedInputStream(url.openStream());
+			
+			OutputStream out = new FileOutputStream("imagemSalva.png");
+
+			for ( int i; (i = in.read()) != -1; ) {
+			    out.write(i);
+			}
+			in.close();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	private static void imprimeRetornoPagina(BufferedReader bufferedReader)
 			throws IOException {
@@ -66,7 +90,14 @@ public class Requisicao {
 		try {
 			JSONObject jo = (JSONObject) jp.parse(texto);
 			
-			jo.get("kind");
+			 String caminho = jo.get("mediaLink").toString();
+			
+			 salvarImagemPorURL(caminho);
+			 
+//			File file = new File(caminho);
+//			
+//			FileOutputStream fos = new FileOutputStream(file);
+			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
