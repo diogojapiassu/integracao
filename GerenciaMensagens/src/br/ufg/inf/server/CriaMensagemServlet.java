@@ -34,17 +34,12 @@ public class CriaMensagemServlet extends HttpServlet {
 		System.out.println("Cria mensagem: Passou no get");
 		
 		try{
-			String mensagem = request.getParameter("mensagem");
-			
-//			Queue queue = QueueFactory.getQueue("mensagens");
-//			queue.add(TaskOptions.Builder.withUrl("/recebeMensagem").param(
-//					"mensagem", "testeeeeeeeeeeeee"));
+			String mensagem = request.getHeader("mensagem");
 			
 			Queue queue = QueueFactory.getQueue("mensagens");
-			TaskHandle th = queue.add(TaskOptions.Builder.withMethod(TaskOptions.Method.PULL)
-                    .tag(mensagem));
+			TaskHandle th = queue.add(TaskOptions.Builder.withMethod(TaskOptions.Method.PULL).tag(mensagem));
 			
-			response.getWriter().println("Mensagem adicionada com sucesso na fila, com ID: " + th.getName());
+			response.getWriter().println(th.getName());
 		} catch (Exception ex) {
 			response.getWriter().println("Falha: " + ex.getMessage());
 		}

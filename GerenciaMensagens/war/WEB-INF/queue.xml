@@ -13,6 +13,7 @@
 	    <acl>
 	      <user-email>diogojapiassu@gmail.com</user-email>      <!-- can list, get, lease, delete, and update tasks -->
 	      <writer-email>diogojapiassu@gmail.com</writer-email> <!-- can insert tasks -->
+	      <writer-email>diogojapiassu@gmail.com</writer-email> <!-- can do all -->
 	    </acl>
   </queue>
 </queue-entries>
