@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>greetServlet</servlet-name>
+    <servlet-class>br.ufg.inf.server.GreetingServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>greetServlet</servlet-name>
+    <url-pattern>/gerenciamensagens/greet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>criaMensagemServlet</servlet-name>
+    <servlet-class>br.ufg.inf.server.CriaMensagemServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>criaMensagemServlet</servlet-name>
+    <url-pattern>/criaMensagem</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>recebeMensagemServlet</servlet-name>
+    <servlet-class>br.ufg.inf.server.RecebeMensagemServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>recebeMensagemServlet</servlet-name>
+    <url-pattern>/recebeMensagem</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>GerenciaMensagens.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

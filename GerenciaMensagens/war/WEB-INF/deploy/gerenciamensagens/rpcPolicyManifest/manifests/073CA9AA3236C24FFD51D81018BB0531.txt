@@ -1,0 +1,2 @@
+serviceClass: br.ufg.inf.client.GreetingService
+path: C494CE42E13D8FF4DFAE86B870D913DE.gwt.rpc

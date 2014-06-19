@@ -1,0 +1,3 @@
+# Module gerenciamensagens
+# RPC service class, partial path of RPC policy file
+br.ufg.inf.client.GreetingService, C494CE42E13D8FF4DFAE86B870D913DE.gwt.rpc
