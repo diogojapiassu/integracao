@@ -2,6 +2,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -33,6 +34,18 @@ public class GerenciadorArquivos {
 			httpUrlConnection.setRequestProperty("Content-Type", formato);
 			httpUrlConnection.setDoOutput(true);
 
+			File arquivo = new File(nomeArquivo);
+			
+			if(arquivo == null || !arquivo.exists()){
+				System.out.println("Arquivo não existe!");
+				return;
+			}
+			
+			if(arquivo.length() > 100000000){ //100 Mb
+				System.out.println("Tamano do arquivo maior do que o permitido!");
+				return;
+			}
+			
 			InputStream in;
 			in = new FileInputStream(nomeArquivo);
 			ByteArrayOutputStream out = new ByteArrayOutputStream();

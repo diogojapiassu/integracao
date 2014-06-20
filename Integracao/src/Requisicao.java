@@ -8,7 +8,7 @@ public class Requisicao {
 
 	public static void main(String[] args) {
 		//Envia a mensagem para a fila e recupera seu ID.
-		String idMensagem = GerenciadorMensagens.adicionaMensagemNaFilaGAE("Universidade Federal de Patos");
+		String idMensagem = GerenciadorMensagens.adicionaMensagemNaFilaGAE("Universidade Federal de Palmas");
 		System.out.println("Id da mensagem: " + idMensagem);
 		//Pelo ID da mensagem adicionada na fila, é recuperada a mensagem:
 		String mensagem = GerenciadorMensagens.recuperaMensagemNaFilaGAE(idMensagem);
